@@ -11,12 +11,15 @@ Notes on dependencies:
 API changes:
 
 - `unary_union` is now deprecated and replaced by the `union_all` method (#3007).
+- `align` keyword in binary methods now defaults to `None`, treated as True. Explicit True
+  will silence the warning about mismachted indices. (#3212)
 - The `sjoin` method will now preserve the name of the index of the right
   GeoDataFrame, if it has one, instead of always using `"index_right"` as the
   name for the resulting column in the return value (#846, #2144).
 
 New methods:
 
+- Added `line_merge` method from shapely to GeoSeries/GeoDataframe (#3214).
 - Added `set_precision` and `get_precision` methods from shapely to GeoSeries/GeoDataframe (#3175).
 - Added `count_coordinates` method from shapely to GeoSeries/GeoDataframe (#3026).
 - Added `minimum_clearance` method from shapely to GeoSeries/GeoDataframe (#2989).
@@ -41,9 +44,8 @@ New features and improvements:
   `buffer(0)` (#3113).
 - Passing `"geometry"` as `dtype` to `pd.read_csv` will now return a GeoSeries for
   the specified columns (#3101).
-- 
-API changes:
-- Added support for ``mask`` keyword for pyogrio engine for pyogrio >= 0.7.0 (#3062).
+- Added support to ``read_file`` for the ``mask`` keyword for the pyogrio engine (#3062).
+- Added support to ``read_file`` for the ``columns`` keyword for the fiona engine (#3133).
 
 Backwards incompatible API changes:
 - The deprecated default value of GeoDataFrame/ GeoSeries `explode(.., index_parts=True)` is now
@@ -67,19 +69,22 @@ Deprecations and compatibility notes:
   removed. New sample datasets are now available in the
   [geodatasets](https://geodatasets.readthedocs.io/en/latest/) package (#3084).
 - Many longstanding deprecated functions, methods and properties have been removed (#3174)
-  - Removed deprecated functions  
-    `geopandas.io.read_file`, `geopandas.io.to_file` and `geopandas.io.sql.read_postgis`. 
-    `geopandas.read_file`, `geopandas.read_postgis` and the GeoDataFrame/GeoSeries `to_file(..)` 
+  - Removed deprecated functions
+    `geopandas.io.read_file`, `geopandas.io.to_file` and `geopandas.io.sql.read_postgis`.
+    `geopandas.read_file`, `geopandas.read_postgis` and the GeoDataFrame/GeoSeries `to_file(..)`
     method should be used instead.
   - Removed deprecated `GeometryArray.data` property, `np.asarray(..)` or the `to_numpy()`
     method should be used instead.
   - Removed deprecated `sindex.query_bulk` method, using `sindex.query` instead.
   - Removed deprecated `sjoin` parameter `op`, `predicate` should be supplied instead.
-  - Removed deprecated GeoSeries/ GeoDataFrame methods `__xor__`, `__or__`, `__and__` and 
-    `__sub__`. Instead use methods `symmetric_difference`, `union`, `intersection` and 
+  - Removed deprecated GeoSeries/ GeoDataFrame methods `__xor__`, `__or__`, `__and__` and
+    `__sub__`. Instead use methods `symmetric_difference`, `union`, `intersection` and
     `difference` respectively.
 - Fixes for compatibility with psycopg (#3167).
-
+- The ``include_fields`` and ``ignore_fields`` keywords in ``read_file()`` are deprecated
+  for the default pyogrio engine. Currently those are translated to the ``columns`` keyword
+  for backwards compatibility, but you should directly use the ``columns`` keyword instead
+  to select which columns to read (#3133).
 
 ## Version 0.14.3 (Jan 31, 2024)
 
