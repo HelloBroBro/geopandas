@@ -57,10 +57,12 @@ New features and improvements:
   the specified columns (#3101).
 - Added support to ``read_file`` for the ``mask`` keyword for the pyogrio engine (#3062).
 - Added support to ``read_file`` for the ``columns`` keyword for the fiona engine (#3133).
+- Added support to ``read_parquet`` for reading files using the GeoArrow-based native geometry encoding of GeoParquet 1.1 (#3253).
 - Add `sort` keyword to `clip` method for GeoSeries and GeoDataFrame to allow optional
   preservation of the original order of observations. (#3233)
 - Added `show_bbox`, `drop_id` and `to_wgs84` arguments to allow further customization of
   `GeoSeries.to_json` (#3226)
+- The `GeoSeries.fillna` method now supports the `limit` keyword (#3290).
 
 Backwards incompatible API changes:
 
