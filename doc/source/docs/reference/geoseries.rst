@@ -39,6 +39,7 @@ General methods and attributes
    GeoSeries.count_interior_rings
    GeoSeries.set_precision
    GeoSeries.get_precision
+   GeoSeries.get_geometry
 
 Unary predicates
 ----------------
@@ -51,6 +52,7 @@ Unary predicates
    GeoSeries.is_ring
    GeoSeries.is_simple
    GeoSeries.is_valid
+   GeoSeries.is_valid_reason
    GeoSeries.has_z
    GeoSeries.is_ccw
 
@@ -113,6 +115,7 @@ Constructive methods and attributes
    GeoSeries.minimum_clearance
    GeoSeries.minimum_rotated_rectangle
    GeoSeries.normalize
+   GeoSeries.polygonize
    GeoSeries.remove_repeated_points
    GeoSeries.reverse
    GeoSeries.sample_points
@@ -144,6 +147,7 @@ Linestring operations
    GeoSeries.interpolate
    GeoSeries.line_merge
    GeoSeries.project
+   GeoSeries.shared_paths
 
 Aggregating and exploding
 -------------------------
