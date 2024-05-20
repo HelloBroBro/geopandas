@@ -98,9 +98,11 @@ Bug fixes:
   geometry column (#2933).
 - Fix bug in `GeoDataFrame` constructor where if `geometry` is given a named
   `GeoSeries` the name was not used as the active geometry column name (#3237).
+- Fix bug in `GeoSeries` constructor when passing a Series and specifying a `crs` to not change the original input data (#2492).
 - Fix regression preventing reading from file paths containing hashes in `read_file`
   with the fiona engine (#3280). An analgous fix for pyogrio is included in
   pyogrio 0.8.1.
+- Fix `to_parquet` to write correct metadata in case of 3D geometries (#2824).
 
 Deprecations and compatibility notes:
 
